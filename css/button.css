@@ -1,0 +1,22 @@
+.Add_to_Cart {
+	background-color:transparent;
+	-moz-border-radius:13px;
+	-webkit-border-radius:13px;
+	border-radius:13px;
+	border:3px solid #dcdcdc;
+	display:inline-block;
+	color:#2a82bd;
+	font-family:arial;
+	font-size:19px;
+	font-weight:bold;
+	padding:5px 16px;
+	text-decoration:none;
+	text-shadow:1px 1px 1px #ffffff;
+	margin:auto;
+	width: 90%;
+	position:relative;
+	left:5%;
+}.Add_to_Cart:active {
+	position:relative;
+	top:1px;
+}

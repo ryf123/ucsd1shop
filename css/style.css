@@ -62,13 +62,20 @@ section.pic {margin-left:auto; margin-right:auto;}
 	text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
 }
 .gallery_item{
+	float:left;
 	border-style:solid;
 	border-color: #00A2E2;
 	border-width:10px;
 	margin:10px;
 	width:250px;
+	height:250px;
 	background-color: #FFFFFF;
 }
+.gallery_item .item_pic{
+	height:150px;
+	width:200px;
+}
+
 .display_gallery{
 	width: 1500px;
 	margin: 50px auto;
@@ -83,8 +90,8 @@ section.pic {margin-left:auto; margin-right:auto;}
 }
 .product_font{
 	position:relative;
-	left:30%;
 	font-family:"Arial Black";
+	text-align:left;
 }
 .ttimg{
 	width:100%;
