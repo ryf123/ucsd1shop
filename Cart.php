@@ -1,14 +1,16 @@
 <?php
+	ob_start();
 	require "constants.php";
 	require_once('Membership.php');
 	session_start();
-	if(isset($_SESSION['status'])){
-		if($_SESSION['status']) {
+	if(isset($_SESSION['email'])){		
 			$my_email = $_SESSION['email'];
 			$shopping_cart = new SHOPPING_CART();
 			if($_POST&&!empty($_POST['product_id'])){
 			if($shopping_cart->Add_to_Cart($my_email,$_POST['product_id'],-1)){
-				
+			?>
+
+			<?php				
 			}
 			else{
 				echo "fail";
@@ -24,6 +26,7 @@
 		<link href="css/style.css" media="all" rel="stylesheet" type="text/css" />
 		<link href="css/style2.css" media="screen" rel="stylesheet" type="text/css" />
 </head>
+<body>
 	<div class="wrap">
 	<nav>
 		<ul class="menu">
@@ -38,10 +41,11 @@
 			?>
 			</a>
 			</li>
-			<li><a href="logout.php"><span class="icon home"></span> Check Out</a></li>
+			<li><a href="checkout.php"><span class="icon home"></span> Check Out</a></li>
 			<li><a href="logout.php"><span class="icon home"></span> Logout</a></li>
-			<br />
+			<li><a>
 			Welcome <?= $my_email?>
+			</a></li>
 		</ul>
 		<div class="clearfix"></div>
 	</nav>
@@ -64,16 +68,12 @@
 	}
 ?>
 </section>
+</body>
 </html>
 <?php
-	}#end if of $_SESSION['status'] equals true
-	else{
-		header('Location:'. URL.'/login.php');
-		exit();
-	} #end of else
 	}#end if of isset $_SESSION['status']
 	else{
-		header('Location:'. URL.'/login.php');
+		header('Location:'. URL.'login.php');
 		exit();
 	} #end of else
 ?>

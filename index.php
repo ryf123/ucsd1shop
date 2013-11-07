@@ -1,4 +1,5 @@
 <?php
+	ob_start();
 	require "constants.php";
 	require_once('Membership.php');
 	session_start();
@@ -7,6 +8,8 @@
 		$my_email = $_SESSION['email'];
 		if($_POST&&!empty($_POST['product_id'])){
 			if($shopping_cart->Add_to_Cart($my_email,$_POST['product_id'],1)){
+			?>
+			<?php
 			}
 			else{
 				echo "fail";
@@ -27,7 +30,6 @@
 <title>UCSD1SHOP</title>
 <link href="css/style.css" media="all" rel="stylesheet" type="text/css" />
 <link href="css/style2.css" media="screen" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="tooltip.js"></script>
 </head>
 <body>
 <div class="wrap">
@@ -47,12 +49,12 @@
 					echo "</a></li>";
 				}
 				if(isset($_SESSION['email'])){
-					echo "<li><a href='Logout.php'><span class='icon'></span>";
+					echo "<li><a href='logout.php'><span class='icon'></span>";
 					echo "Logout";
 					echo "</a></li>";
 				} 	
 				if(isset($_SESSION['email'])){
-					echo "<li><a href='cart.php'><span class='icon'></span>";
+					echo "<li><a href='checkout.php'><span class='icon'></span>";
 					echo "Check Out";
 					echo "</a></li>";
 				}

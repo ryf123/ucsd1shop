@@ -5,6 +5,23 @@
 	function __construct(){
 		$this->conn = new mysqli(DB_SERVER,DB_USER,DB_PWD,DB_NAME) or die ("Error connection database");
 	}
+	// Name: fetch_user_info
+	// Input: $email
+	// Desc: Get username and phone number
+	function fetch_user_info($email){
+		$info = array();
+		$query = "SELECT name,phone FROM account_info WHERE (username='$email') LIMIT 1";
+		if($stm = $this->conn->prepare($query)){ #Note we can not have $ here
+			$stm->bind_result($user_name,$user_phone);
+			$stm->execute();
+		if($stm->fetch()){
+			$info = array($user_name,$user_phone);
+			$stm->close();
+			return $info;
+		}
+		return false;
+		}
+	}
 	// Name: verify_email
 	// Input: $email
 	// Desc: Check in the logged in user is in our DB
@@ -55,9 +72,9 @@
 	// Name: Add user to DB
 	// Input: $email $password
 	// Desc: Add email and password to DB	
-	function Add_Account_to_DB($email,$password,$phone){
+	function Add_Account_to_DB($email,$password,$phone,$name){
 		$password = md5($email.$password);
-		$query = "insert  into account_info values('$email','$password','$phone')";
+		$query = "insert  into account_info values('$email','$password','$phone','$name')";
 		 if($stm = $this->conn->prepare($query)){
 			if($stm->execute()){
 				$stm->close();
@@ -115,6 +132,43 @@
 			$stm->close();
 		}
 	}
+	// Name: check out items
+	// Input: $name,$phone,$location,$date,$email
+	// Desc: check out items
+	function check_out($name,$phone,$location,$date,$email){
+		$products = array();
+		$query = "select product_id,quantity from cart where (email='$email')";
+		echo $query;
+		if($stm1 = $this->conn->prepare($query)){
+			$stm1->bind_result($product_id,$quantity);
+			if($stm1->execute()){
+					while($stm1->fetch()){
+						array_push($products,array($product_id,$quantity));
+					}
+					$stm1->close();
+			}
+			else{
+				return 0;
+			}
+			foreach($products as &$values){
+						$query = "insert  into `".DB_ORDER."` values('$name','$phone','$location','$date','$values[0]','$values[1]')";
+						echo $query;
+						if($stm2 = $this->conn->prepare($query)){
+							if($stm2->execute()){							
+								$stm2->close();
+							}						
+						}
+			}			
+		}
+		$query = "delete from  `".DB_CART."` where (email='$email')";
+		echo $query;
+		if($stm3 = $this->conn->prepare($query)){
+			if($stm3->execute()){
+				$stm3->close();
+			}						
+		}
+		
+	}
 	function Add_to_Cart($email,$product_id,$quantity){
 		$query = "select quantity from ".DB_CART." where(email='$email' and product_id='$product_id') ";
 		if($stm = $this->conn->prepare($query)){
@@ -159,7 +213,7 @@
 			}
 		 }
 		return $products;
-	}
+	}		
 	// Name: list_user_cart
 	// Input: $email
 	// Desc: list all products for a specific user

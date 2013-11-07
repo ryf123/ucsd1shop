@@ -1,4 +1,5 @@
 <?php
+	ob_start();
 	define('APP_VERSION',1);
 	require_once ('constants.php');
 	require_once ('Membership.php');
@@ -37,10 +38,11 @@
 
 	<input type="email" name="email" id="email" value="" size="50" maxlength="50" required placeholder="yourname@email.com"/>
 	<br />
-	<input type="password"  name="password" id="password" value="" size="40" maxlength="40" required placeholder="password"/>
+	<input type="password"  name="password" id="password" value="" size="50" maxlength="40" required placeholder="password"/>
 	<br />
-	<input type="phone"  name="phone" id="phone" value="" size="40" maxlength="11" required placeholder="phone number"/>
-	<br />		
+	<input type="phone"  name="phone" id="phone" value="" size="50" maxlength="11" required placeholder="phone number"/>
+	<br />
+	<input type="name"  name="name" id="name" value="" size="50" maxlength="50" required placeholder="your name"/>		
 	<input type="submit" name="subform" value="Create Account"/>
 </form>
 
@@ -74,13 +76,13 @@ if(isset($_SESSION)){
 ?>
 <?php
 	
-    if($_POST&&!empty($_POST['email'])&&!empty($_POST['password'])){
+    if($_POST&&!empty($_POST['email'])&&!empty($_POST['password'])&&!empty($_POST['phone'])&&!empty($_POST['name'])){
 		$mysql = new MySQL();
 		if($mysql->verify_account_exist($_POST['email'])){
 			echo "<div class='account_exist_font'>Account already exists</div>";
 		}
 		else{
-			$add_db_status = $mysql->Add_Account_to_DB($_POST['email'],md5($_POST['password']),$_POST['phone']);
+			$add_db_status = $mysql->Add_Account_to_DB($_POST['email'],md5($_POST['password']),$_POST['phone'],$_POST['name']);
 			$added_email = $_POST['email'];
 			echo "<div class='account_welcome'>Successfully registered</div>";
 			$_SESSION['email'] = $_POST['email'];
