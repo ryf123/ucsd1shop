@@ -90,7 +90,8 @@
 		echo "<h2 class='product_font' >$value[1]</h2>";
 		$image_source = "\"images/$value[2].png\""; 
 		echo "<input class='item_pic' type='image' src='images/$value[2].png' alt=' ' width='100%'/>";
-		echo "<h2 class='product_font'>Price \$$value[3]</h2>";
+		$product_price = round($value[3],2);
+		echo "<h2 class='product_font'>Price \$$product_price</h2>";
 		echo "<h2 class='product_font'>$value[4]</h2>";
 		echo "<input type='hidden' name='product_id' value='$value[0]'>";
 		echo "<input class='form_submit' class ='Add_to_Cart' type='submit' value='Add to cart'>";

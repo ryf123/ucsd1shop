@@ -8,10 +8,27 @@
 			$shopping_cart = new SHOPPING_CART();
 			$mysql = new MySQL();
 			if($_POST&&!empty($_POST['phone'])&&!empty($_POST['name'])&&!empty($_POST['location'])&&!empty($_POST['date'])){
+			$products = $shopping_cart->list_user_cart($my_email);
+			$total_value = 0;
+			$mail_message =  "<html><table class='checkout_table'>";
+			$mail_message.= "<tr><th>Name</th><th>Quantity</th><th>Price</th></tr>";
+			foreach ($products as &$value){
+			$mail_message.= "<tr>";
+			$mail_message.= "<td>$value[1]</td>";
+			$mail_message.= "<td>$value[4]</td>";
+			$product_price = round($value[3],2);
+			$mail_message.= "<td>\$$product_price</td>";
+			$mail_message.= "</tr>";
+			$total_value = $total_value+$value[3];
+			}
+			$total_value = round($total_value,2);
+			$mail_message.= "<tr><td>Total</td><td></td><td>\$$total_value</td></tr>";
+			$mail_message.= "</table></html>";
 				$shopping_cart->check_out($_POST['name'],$_POST['phone'],$_POST['location'],$_POST['date'],$_SESSION['email']);			
-				$mail_message = "Your order will arrive". $_POST['date']." at ".$_POST['location']." \n Phone number: ".$_POST['phone']."for ".$_POST['name']." \n Total Amount:".$_POST['total_amount']."\nThank you for shopping!";
+				$mail_message .= "Thanks ".$_SESSION['email']."! Your order will arrive ". $_POST['date']." at ".$_POST['location']." \n Phone number: ".$_POST['phone']." for ".$_POST['name']." \n Total Amount:".$_POST['total_amount']."\nThank you for shopping!";
 				if(DB_USER=="UCSDSHOP1"){
 					mail($my_email, MAIL_SUBJECT, $mail_message,MAIL_HEADER);
+					mail(MY_EMAIL,MAIL_SUBJECT, $mail_message,MAIL_HEADER);
 				}
 				header('Location:'. URL.'index.php');
 				exit();
@@ -52,10 +69,12 @@
 		echo "<tr>";
 		echo "<td>$value[1]</td>";
 		echo "<td>$value[4]</td>";
-		echo "<td>\$$value[3]</td>";
+		$product_price = round($value[3],2);
+		echo "<td>\$$product_price</td>";
 		echo "</tr>";
 		$total_value = $total_value+$value[3];
 	}
+	$total_value = round($total_value,2);
 	echo "<tr><td>Total</td><td></td><td>\$$total_value</td></tr>";
 	echo "</table>";
 ?>
@@ -64,8 +83,8 @@
 	<label class="time_select" for="order_delivery_time">Choose a Time Slot</label>
 	<select required name="location" class="time_select" id="order_delivery_time">
 		<option value=""></option>
-		<option value="rita">rita atkinson hall 9:00 pm</option>
-		<option value="nobel">Nobel Court 9:45 pm</option>
+		<option value="rita 9:00pm">rita atkinson hall 9:00 pm</option>
+		<option value="nobel court 9:45pm">Nobel Court 9:45 pm</option>
 	</select>
 </div>
 <br/>

@@ -31,6 +31,7 @@ if($_POST && $_POST['email'] && $_POST['password']){
 		<ul class="menu">
 			<li><a href="index.php"><span class="icon home"></span> UCSD1Shop</a></li>
 			<li><a href="login.php"><span class="icon"></span> Login</a></li>
+			<li><a href="Register.php"><span class="icon"></span>New Account</a></li>
 		</ul>
 		<div class="clearfix"></div>
 	</nav>

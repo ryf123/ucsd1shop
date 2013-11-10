@@ -59,7 +59,8 @@
 		echo "<form name = 'cart_form' method='post' action='Cart.php'> ";
 		echo "<input class='item_pic' type='image' src='images/$value[2].png'  width='100%'/>";
 		echo "<div class='desc'>$value[1]</div>";
-		echo "<div class='desc'>Price \$$value[3]</div>";
+		$product_price = round($value[3],2);
+		echo "<div class='desc'>Price \$$product_price</div>";
 		echo "<div class='desc'>Quantity $value[4]</div>";
 		echo "<input type='hidden' name='product_id' value='$value[0]'>";
 		echo "<input type='submit' value='Delete from cart by 1'>";
