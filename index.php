@@ -89,7 +89,7 @@
 		echo "<form name = 'cart_form' method='post' action='index.php'> ";
 		echo "<h2 class='product_font' >$value[1]</h2>";
 		$image_source = "\"images/$value[2].png\""; 
-		echo "<input class='item_pic' type='image' src='images/$value[2].png' alt=' ' width='100%'/>";
+		echo "<input class='item_pic' type='image' src='images/$value[2].png' alt=' ' width='100%'/ title='add to cart'>";
 		$product_price = round($value[3],2);
 		echo "<h2 class='product_font'>Price \$$product_price</h2>";
 		echo "<h2 class='product_font'>$value[4]</h2>";
