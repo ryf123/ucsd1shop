@@ -30,9 +30,9 @@
 	<div class="wrap">
 	<nav>
 		<ul class="menu">
-			<li><a href="index.php"><span class="icon home"></span> UCSD1Shop</a></li>
+			<li><a href="index.php" class='home'>UCSD1SHOP</a></li>
 			<li>
-			<a href=""><span class="icon home"></span>
+			<a href="" class='icon'>
 			<?php
 				echo "Cart";
 				if($quantity > 0){
@@ -41,9 +41,9 @@
 			?>
 			</a>
 			</li>
-			<li><a href="checkout.php"><span class="icon home"></span> Check Out</a></li>
-			<li><a href="logout.php"><span class="icon home"></span> Logout</a></li>
-			<li><a>
+			<li><a href="checkout.php" class='icon'>Check Out</a></li>
+			<li><a href="logout.php" class='icon'>Logout</a></li>
+			<li><a class='icon'>
 			Welcome <?= $my_email?>
 			</a></li>
 		</ul>
@@ -63,7 +63,7 @@
 		echo "<div class='desc'>Price \$$product_price</div>";
 		echo "<div class='desc'>Quantity $value[4]</div>";
 		echo "<input type='hidden' name='product_id' value='$value[0]'>";
-		echo "<input type='submit' value='Delete from cart by 1'>";
+		echo "<input type='submit' class=form_submit value='Delete one from cart'>";
 		echo "</form>";
 		echo "</div>";
 	}

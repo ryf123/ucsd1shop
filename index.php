@@ -35,31 +35,31 @@
 <div class="wrap">
 	<nav class="my_nav">
 		<ul class="menu">
-			<li><a href="index.php"><span class="icon home"></span> UCSD1SHOP</a></li>
+			<li><a href="index.php" class="home">UCSD1SHOP</a></li>
 			<?php
 				if(!isset($_SESSION['email'])){
-					echo "<li><a href='login.php'><span class='icon'></span>";
+					echo "<li><a href='login.php' class='icon'>";
 					echo "Login";
 					echo "</a></li>";
 				}
 
 				if(!isset($_SESSION['email'])){
-					echo "<li><a href='Register.php'><span class='icon'></span>";
+					echo "<li><a href='Register.php' class='icon'>";
 					echo "New Acccount";
 					echo "</a></li>";
 				}
 				if(isset($_SESSION['email'])){
-					echo "<li><a href='logout.php'><span class='icon'></span>";
+					echo "<li><a href='logout.php' class='icon'>";
 					echo "Logout";
 					echo "</a></li>";
 				} 	
 				if(isset($_SESSION['email'])){
-					echo "<li><a href='checkout.php'><span class='icon'></span>";
+					echo "<li><a href='checkout.php' class='icon'>";
 					echo "Check Out";
 					echo "</a></li>";
 				}
 			?>							
-			<li><a href="Cart.php">		
+			<li><a href="Cart.php" class='icon'>		
 			<?php
 				if(isset($_SESSION['email'])){
 				if($quantity > 0){
@@ -69,7 +69,7 @@
 			?>
 			<input type="image" src="images/cart.png"  width='30px' class="cart_pic"/>
 			</a></li>
-			<li><a>
+			<li><a class='icon'>
 			<?php
 			if(isset($_SESSION['email'])){
 				echo "Welcome $my_email";

@@ -48,10 +48,10 @@
 	<div class="wrap">
 	<nav>
 		<ul class="menu">
-			<li><a href="index.php"><span class="icon home"></span> UCSD1Shop</a></li>
+			<li><a href="index.php" class="home">UCSD1SHOP</a></li>
 			</li>
-			<li><a href="logout.php"><span class="icon home"></span> Logout</a></li>
-			<li><a>
+			<li><a href="logout.php" class='icon'>Logout</a></li>
+			<li><a class='icon'>
 			Hi <?= $my_email?>
 			</a></li>
 		</ul>

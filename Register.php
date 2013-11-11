@@ -20,12 +20,12 @@
 <div class="wrap">
 	<nav>
 		<ul class="menu">
-			<li><a href="index.php"><span class="icon home"></span> UCSD1Shop</a></li>
-			<li><a href="login.php"><span class="icon"></span> Login</a></li>
+			<li><a href="index.php" class="home">UCSD1Shop</a></li>
+			<li><a href="login.php" class='icon'>Login</a></li>
 			<?php
 				if($common->Verify_Status_Exist()){
 					if($_SESSION['status']){
-						echo '<li><a href="index.php"><span class="icon"></span> Home</a></li>';
+						echo '<li><a href="index.php">Home</a></li>';
 					}
 				}
 			?>

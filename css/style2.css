@@ -91,8 +91,21 @@ body {
 	float: left;
 	position: relative;
 }
-
-.menu li a {
+.menu li .home{
+	color:#00A2E2;
+	text-shadow: 0 1px 0 #ffffff;
+	display: block;
+	font-size: 24px;
+	line-height: 20px;
+	padding: 6px 12px;
+	margin: 8px 8px;
+	vertical-align: middle;
+	text-decoration: none;
+}
+.menu li .home:hover{
+	color:#FF0000;
+}
+.menu li .icon{
 	color: #444;
 	display: block;
 	font-size: 14px;
@@ -101,8 +114,11 @@ body {
 	margin: 8px 8px;
 	vertical-align: middle;
 	text-decoration: none;
+	border-radius: 20px;
 }
-
+.menu li .icon:hover{
+	color:#FF7F50;
+}
 
 /* Dropdown styles */
 .menu ul {
@@ -203,14 +219,10 @@ body {
 	position: absolute;
 	color:#00008B;
 }
-.checkout_table{
 
-	border-top:1px solid #e5eff8;
-	border-right:1px solid #e5eff8;
-}
 .checkout_table td,th{
 	font-size:large;
-  	color:#678197;
+  	color:#00008B;
 	border-bottom:1px solid #e5eff8;
 	border-left:1px solid #e5eff8;
 	padding:.3em 1em;
@@ -218,8 +230,13 @@ body {
 }
 .checkout_form{
 	position:absolute;
-	left:40%;
+	width:500px;
+	left:35%;
 	top:80px;	
+}
+.checkout_table{
+	border-top:1px solid #e5eff8;
+	border-right:1px solid #e5eff8;
 }
 .checkout_form .check_out_submit{
 	position:relative;
@@ -242,6 +259,8 @@ body {
 }
 
 .order{
+	position:relative;
+	left:50px;
 	width:320px;
 	float:none;
 	font-size: 24px;
